@@ -64,8 +64,8 @@ object SbtAntlrPlugin extends Plugin {
     antlrDependency := "org.antlr" % "antlr" % "3.5",
 
     sourceDirectory <<= (sourceDirectory in Compile) { _ / "antlr3" },
-    javaSource <<= sourceManaged in Compile,
-    antlrTokensResource <<= sourceManaged in Compile,
+    javaSource <<= (sourceManaged in Compile) { _ / "antlr3" },
+    antlrTokensResource <<= (sourceManaged in Compile) { _ / "antlr3" },
     
     managedClasspath <<= (classpathTypes in Antlr, update) map { (ct, report) =>
       Classpaths.managedJars(Antlr, ct, report)
